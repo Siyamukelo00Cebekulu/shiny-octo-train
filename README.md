@@ -10,10 +10,12 @@ The goal is also personal: to **learn how to build a web app using Three.js and 
 ## 🛠️ Technical Stack
 
 ### Core Technologies
-- ![Three.js](https://raw.githubusercontent.com/github/explore/main/topics/threejs/threejs.png) **Three.js** – 3D rendering and scene management
-- ![WebGL](https://raw.githubusercontent.com/github/explore/main/topics/webgl/webgl.png) **WebGL** – Hardware-accelerated graphics
-- ![JavaScript](https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png) **JavaScript (ES6+)** – Application logic
-- ![HTML5](https://raw.githubusercontent.com/github/explore/main/topics/html/html.png) **HTML5/CSS3** – UI structure and styling
+- ![Threejs](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white)
+ **Three.js** – 3D rendering and scene management
+- ![WebGL](https://img.shields.io/badge/WebGL-990000?logo=webgl&logoColor=white&style=for-the-badge)
+ **WebGL** – Hardware-accelerated graphics
+- ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)**JavaScript (ES6+)** – Application logic
+- ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) **HTML5/CSS3** – UI structure and styling
 
 
 ### ⚡ Additional Libraries
@@ -23,7 +25,7 @@ The goal is also personal: to **learn how to build a web app using Three.js and 
 - ![OrbitControls](https://raw.githubusercontent.com/github/explore/main/topics/threejs/threejs.png) **OrbitControls** – Camera manipulation
 
 
-📁 Project Structure
+### 📁 Project Structure
 ```bash
 football-tactics-visualizer/
 ├── src/
@@ -59,42 +61,26 @@ football-tactics-visualizer/
 └── package.json
 ```
 ## 🎮 Core Features
-1. 3D Pitch Environment
-Realistic football pitch with proper dimensions
 
-Dynamic lighting and shadows
+### 1. 3D Pitch Environment
+- ⚽ **Realistic football pitch** with proper dimensions  
+- 💡 **Dynamic lighting** and shadows  
+- 🌦️ **Weather and time-of-day effects**  
+- 🎥 **Multiple camera angles** (top, sideline, tactical, first-person)  
 
-Weather and time-of-day effects
+---
 
-Multiple camera angles (top, sideline, tactical, first-person)
+### 2. Player System
+- 🏃‍♂️ **Animated 3D player models**  
+- 🤸 **Realistic player movements and animations**  
+- 🎨 **Player role visualization** (colors, icons, trails)  
+- 📐 **Formation positioning and transitions**  
 
-2. Player System
-Animated 3D player models
+---
 
-Realistic player movements and animations
-
-Player role visualization (colors, icons, trails)
-
-Formation positioning and transitions
-
-3. Tactical Systems
+### 3. Tactical Systems
 ```javascript
-// Example tactical configuration
-const gegenpressConfig = {
-    formation: "4-3-3",
-    pressingIntensity: 0.8,
-    defensiveLine: "high",
-    pressingZones: {
-        highPress: { enabled: true, intensity: 0.9 },
-        midBlock: { enabled: false, intensity: 0.0 },
-        lowBlock: { enabled: false, intensity: 0.0 }
-    },
-    transitions: {
-        counterPress: true,
-        immediateCounter: true,
-        regroup: false
-    }
-};// Example tactical configuration
+// Example tactical configuration: Gegenpress
 const gegenpressConfig = {
     formation: "4-3-3",
     pressingIntensity: 0.8,
@@ -111,27 +97,24 @@ const gegenpressConfig = {
     }
 };
 ```
-4. Animation System
-Player movement paths and trajectories
 
-Pressing triggers and zones
+### 4. Animation System
+- 🏃 **Player movement paths** and trajectories  
+- 🛡️ **Pressing triggers** and zones  
+- ➡️ **Passing lanes** and patterns  
+- 🧱 **Defensive shape transitions**  
+- 🎯 **Set-piece routines**  
 
-Passing lanes and patterns
+---
 
-Defensive shape transitions
+### 5. User Interface
+- 📚 **Tactical preset library**  
+- ⚙️ **Real-time parameter adjustments**  
+- ⏱️ **Animation timeline** with playback controls  
+- 🎨 **Formation designer**  
+- 💾 **Export/import functionality**  
 
-Set-piece routines
-
-5. User Interface
-Tactical preset library
-
-Real-time parameter adjustments
-
-Animation timeline with playback controls
-
-Formation designer
-
-Export/import functionality
+---
 
 ## 🚀 Implementation Plan
 
