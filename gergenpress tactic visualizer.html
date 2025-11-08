@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gegenpress Football Tactic</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a3a, #0d1b2a);
+            color: #e0e0e0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(13, 27, 42, 0.7);
+            border-radius: 10px;
+            border: 1px solid #2a4d69;
+        }
+        
+        h1 {
+            color: #4cc9f0;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: #9e9e9e;
+            font-size: 1.2rem;
+        }
+        
+        .tactic-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .tactic-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .pitch-section, .instructions-section {
+            background: rgba(13, 27, 42, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #2a4d69;
+        }
+        
+        .section-title {
+            color: #4cc9f0;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #2a4d69;
+        }
+        
+        /* Football Pitch */
+        .football-pitch {
+            width: 100%;
+            height: 500px;
+            background: #2d5a2d;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50%;
+        }
+        
+        .center-spot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 50%;
+        }
+        
+        .halfway-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #e0e0e0;
+        }
+        
+        .penalty-box {
+            position: absolute;
+            width: 130px;
+            height: 320px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .penalty-box.left {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        
+        .penalty-box.right {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+        
+        .goal-box {
+            position: absolute;
+            width: 60px;
+            height: 200px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .goal-box.left {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        
+        .goal-box.right {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+        
+        /* Players */
+        .player {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            z-index: 10;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .player:hover {
+            transform: scale(1.2);
+            z-index: 20;
+        }
+        
+        .goalkeeper { background: #e63946; }
+        .defender { background: #457b9d; }
+        .midfielder { background: #2a9d8f; }
+        .forward { background: #e9c46a; color: #333; }
+        
+        /* Pressing Zones */
+        .pressing-zone {
+            position: absolute;
+            border: 2px dashed #f4a261;
+            background: rgba(244, 162, 97, 0.2);
+            border-radius: 5px;
+        }
+        
+        .high-press {
+            top: 20%;
+            left: 25%;
+            width: 50%;
+            height: 30%;
+        }
+        
+        .mid-press {
+            top: 50%;
+            left: 15%;
+            width: 70%;
+            height: 25%;
+        }
+        
+        /* Instructions */
+        .instructions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .instruction-card {
+            background: rgba(42, 77, 105, 0.5);
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #4cc9f0;
+        }
+        
+        .card-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #4cc9f0;
+        }
+        
+        .principles-list {
+            list-style-type: none;
+        }
+        
+        .principles-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(42, 77, 105, 0.5);
+            display: flex;
+            align-items: center;
+        }
+        
+        .principles-list li:before {
+            content: "✓";
+            color: #2a9d8f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .transition-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(42, 77, 105, 0.5);
+            border-radius: 8px;
+        }
+        
+        .transition-step {
+            text-align: center;
+            flex: 1;
+            padding: 10px;
+        }
+        
+        .transition-arrow {
+            font-size: 24px;
+            color: #4cc9f0;
+        }
+        
+        .key-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .toggle-btn {
+            background: #4cc9f0;
+            color: #1a2a3a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #2a9d8f;
+            transform: translateY(-2px);
+        }
+        
+        .player-info {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(42, 77, 105, 0.7);
+            border-radius: 5px;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #9e9e9e;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>GEGENPRESS TACTIC</h1>
+            <p class="subtitle">High-Intensity Counter-Pressing System</p>
+        </header>
+        
+        <div class="tactic-container">
+            <div class="pitch-section">
+                <h2 class="section-title">Tactical Formation: 4-3-3</h2>
+                <div class="football-pitch">
+                    <!-- Pitch Markings -->
+                    <div class="center-circle"></div>
+                    <div class="center-spot"></div>
+                    <div class="halfway-line"></div>
+                    <div class="penalty-box left"></div>
+                    <div class="penalty-box right"></div>
+                    <div class="goal-box left"></div>
+                    <div class="goal-box right"></div>
+                    
+                    <!-- Pressing Zones -->
+                    <div class="pressing-zone high-press"></div>
+                    <div class="pressing-zone mid-press"></div>
+                    
+                    <!-- Players -->
+                    <div class="player goalkeeper" style="top: 50%; left: 5%;" onclick="togglePlayerInfo('gk')">GK</div>
+                    
+                    <div class="player defender" style="top: 30%; left: 20%;" onclick="togglePlayerInfo('rb')">RB</div>
+                    <div class="player defender" style="top: 45%; left: 18%;" onclick="togglePlayerInfo('rcb')">RCB</div>
+                    <div class="player defender" style="top: 55%; left: 18%;" onclick="togglePlayerInfo('lcb')">LCB</div>
+                    <div class="player defender" style="top: 70%; left: 20%;" onclick="togglePlayerInfo('lb')">LB</div>
+                    
+                    <div class="player midfielder" style="top: 35%; left: 40%;" onclick="togglePlayerInfo('cdm')">CDM</div>
+                    <div class="player midfielder" style="top: 50%; left: 45%;" onclick="togglePlayerInfo('cm')">CM</div>
+                    <div class="player midfielder" style="top: 65%; left: 40%;" onclick="togglePlayerInfo('cam')">CAM</div>
+                    
+                    <div class="player forward" style="top: 25%; left: 70%;" onclick="togglePlayerInfo('rw')">RW</div>
+                    <div class="player forward" style="top: 50%; left: 75%;" onclick="togglePlayerInfo('st')">ST</div>
+                    <div class="player forward" style="top: 75%; left: 70%;" onclick="togglePlayerInfo('lw')">LW</div>
+                </div>
+                
+                <button class="toggle-btn" onclick="togglePressingZones()">Toggle Pressing Zones</button>
+                
+                <div class="player-info" id="gk-info">
+                    <strong>Goalkeeper (GK):</strong> Sweeper Keeper - Attack. Initiates counter-attacks, acts as 11th outfield player.
+                </div>
+                <div class="player-info" id="rb-info">
+                    <strong>Right Back (RB):</strong> Complete Wing-Back - Support. Provides width, supports attacks, tracks back quickly.
+                </div>
+                <div class="player-info" id="st-info">
+                    <strong>Striker (ST):</strong> Pressing Forward - Attack. Leads pressing from front, forces defensive errors.
+                </div>
+            </div>
+            
+            <div class="instructions-section">
+                <h2 class="section-title">Tactical Instructions</h2>
+                
+                <div class="instructions-grid">
+                    <div class="instruction-card">
+                        <div class="card-title">In Possession</div>
+                        <ul class="principles-list">
+                            <li>Play Out of Defence</li>
+                            <li>Pass Into Space</li>
+                            <li>Higher Tempo</li>
+                            <li>Focus Through Middle</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="instruction-card">
+                        <div class="card-title">Out of Possession</div>
+                        <ul class="principles-list">
+                            <li>Extremely Urgent Pressing</li>
+                            <li>Much Higher Defensive Line</li>
+                            <li>Prevent Short GK Distribution</li>
+                            <li>Counter-Press Immediately</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="instruction-card">
+                        <div class="card-title">Transitions</div>
+                        <ul class="principles-list">
+                            <li>Counter Immediately</li>
+                            <li>Regroup Quickly</li>
+                            <li>Distribute Quickly</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="instruction-card">
+                        <div class="card-title">Player Roles</div>
+                        <ul class="principles-list">
+                            <li><span class="key-indicator" style="background: #e63946;"></span> Sweeper Keeper</li>
+                            <li><span class="key-indicator" style="background: #457b9d;"></span> Ball-Playing Defenders</li>
+                            <li><span class="key-indicator" style="background: #2a9d8f;"></span> Box-to-Box Midfielders</li>
+                            <li><span class="key-indicator" style="background: #e9c46a;"></span> Pressing Forward</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3 class="section-title">Gegenpress Principle</h3>
+                <div class="transition-flow">
+                    <div class="transition-step">
+                        <strong>Lose Possession</strong>
+                        <div>🚨</div>
+                    </div>
+                    <div class="transition-arrow">→</div>
+                    <div class="transition-step">
+                        <strong>Immediate Press</strong>
+                        <div>⏱️ 5-6 sec rule</div>
+                    </div>
+                    <div class="transition-arrow">→</div>
+                    <div class="transition-step">
+                        <strong>Win Ball Back</strong>
+                        <div>✅</div>
+                    </div>
+                    <div class="transition-arrow">→</div>
+                    <div class="transition-step">
+                        <strong>Quick Counter</strong>
+                        <div>⚡</div>
+                    </div>
+                </div>
+                
+                <h3 class="section-title">Key Performance Indicators</h3>
+                <ul class="principles-list">
+                    <li>PPDA (Passes Per Defensive Action): &lt; 8</li>
+                    <li>High Pressing Success Rate: &gt; 40%</li>
+                    <li>Recoveries in Final Third: &gt; 15 per game</li>
+                    <li>Counter-Attacks: &gt; 5 per game</li>
+                </ul>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Gegenpress Tactic Visualization | Based on Jürgen Klopp's high-intensity philosophy</p>
+        </footer>
+    </div>
+
+    <script>
+        function togglePressingZones() {
+            const zones = document.querySelectorAll('.pressing-zone');
+            zones.forEach(zone => {
+                zone.style.display = zone.style.display === 'none' ? 'block' : 'none';
+            });
+        }
+        
+        function togglePlayerInfo(playerId) {
+            const infoElement = document.getElementById(`${playerId}-info`);
+            if (infoElement) {
+                // Hide all player info first
+                document.querySelectorAll('.player-info').forEach(info => {
+                    info.classList.remove('active');
+                });
+                
+                // Show selected player info
+                infoElement.classList.add('active');
+            }
+        }
+        
+        // Initialize - hide pressing zones
+        document.addEventListener('DOMContentLoaded', function() {
+            togglePressingZones();
+        });
+    </script>
+</body>
+</html>
