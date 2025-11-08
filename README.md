@@ -5,9 +5,7 @@ This project aims to **bridge the gap between technical football analysis and ac
 
 The goal is also personal: to **learn how to build a web app using Three.js and WebGL**. Thanks to advancements in AI, I can now tackle projects that once seemed unimaginable—**all hail our AI overlords!** 🤖
 
----
-
-## 🛠️ Technical Stack
+# 🛠️ Technical Stack
 
 ### Core Technologies
 - ![Threejs](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white)
@@ -25,7 +23,7 @@ The goal is also personal: to **learn how to build a web app using Three.js and 
 - ![OrbitControls](https://raw.githubusercontent.com/github/explore/main/topics/threejs/threejs.png) **OrbitControls** – Camera manipulation
 
 
-### 📁 Project Structure
+# 📁 Project Structure
 ```bash
 football-tactics-visualizer/
 ├── src/
@@ -60,7 +58,7 @@ football-tactics-visualizer/
 │   └── API.md                     # Documentation
 └── package.json
 ```
-## 🎮 Core Features
+# 🎮 Core Features
 
 ### 1. 3D Pitch Environment
 - ⚽ **Realistic football pitch** with proper dimensions  
@@ -116,7 +114,7 @@ const gegenpressConfig = {
 
 ---
 
-## 🚀 Implementation Plan
+# 🚀 Implementation Plan
 
 ### Phase 1: Foundation (Weeks 1–2)
 - **🧱Set up Three.js scene** and basic pitch
@@ -148,7 +146,7 @@ const gegenpressConfig = {
 - **📘Create tutorial and documentation**
 - **🌐Perform browser testing and final optimization**
 
-## 🎨 Visual Design Specifications
+# 🎨 Visual Design Specifications
 Colors
 
 ```css
@@ -161,7 +159,7 @@ Colors
     --background-dark: #0d1b2a;
 }
 ```
-## 3D Models
+# 3D Models
 
 - 👤 **Low-poly player models** for better performance
 - 🎨 **Modular kit system** for team customization
@@ -170,7 +168,7 @@ Colors
 
 ---
 
-## 📊 Technical Considerations
+# 📊 Technical Considerations
 
 ### Performance Optimization
 - ⚡ **Level of Detail (LOD)** for distant objects
@@ -186,11 +184,11 @@ Colors
 
 ---
 
-## 🎯 Example Use Case
+# 🎯 Example Use Case
 - *<insert specific example>*, e.g., tactical simulation, training visualization, or fan engagement feature
 
-## 🤝 Contributing
+# 🤝 Contributing
 We welcome contributions from developers, coaches, and football enthusiasts. Please see our contributing guidelines for more information.
 
-## 📄 License
+# 📄 License
 MIT License - feel free to use this project for educational and commercial purposes.
