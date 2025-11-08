@@ -1,0 +1,116 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Tactics Visualizer MVP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d1b2a;
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+        
+        #app {
+            display: flex;
+            height: 100vh;
+        }
+        
+        #scene-container {
+            flex: 1;
+            position: relative;
+        }
+        
+        #ui-container {
+            width: 300px;
+            background: rgba(13, 27, 42, 0.9);
+            border-right: 1px solid #2a4d69;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .controls-panel h2 {
+            color: #4cc9f0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(42, 77, 105, 0.3);
+            border-radius: 8px;
+        }
+        
+        .control-group h3 {
+            color: #2a9d8f;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        button {
+            background: #4cc9f0;
+            color: #1a2a3a;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: #2a9d8f;
+            transform: translateY(-1px);
+        }
+        
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            background: #1a2a3a;
+            color: #e0e0e0;
+            border: 1px solid #2a4d69;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="ui-container">
+            <div class="controls-panel">
+                <h2>⚽ Tactics Visualizer</h2>
+                <div class="control-group">
+                    <h3>Formations</h3>
+                    <select id="formation-select">
+                        <option value="433">4-3-3</option>
+                        <option value="343">3-4-3</option>
+                        <option value="442">4-4-2</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <h3>Tactics</h3>
+                    <button id="btn-gegenpress">Gegenpress</button>
+                    <button id="btn-reset">Reset Positions</button>
+                </div>
+                <div class="control-group">
+                    <h3>Camera</h3>
+                    <button id="btn-camera-top">Top View</button>
+                    <button id="btn-camera-sideline">Sideline View</button>
+                </div>
+            </div>
+        </div>
+        <div id="scene-container"></div>
+    </div>
+    
+    <script type="module" src="main.js"></script>
+</body>
+</html>
